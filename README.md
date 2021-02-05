@@ -1,24 +1,75 @@
-# README
+# FurimaのER図
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column        | Type     | Options     |
+| ------------- | -------- | ----------- |
+| nickname      | string   | null: false |
+| email         | string   | null: false |
+| password      | string   | null: false |
+| name          | string   | null: false |
+| name_kana     | string   | null: false |
+| birthday      | pulldown | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_one :purchaser
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| items_name        | string     | null: false                    |
+| items_description | text       | null: false                    |
+| category          | pulldown   | null: false                    |
+| items_condition   | pulldown   | null: false                    |
+| shipping_charges  | pulldown   | null: false                    |
+| days_to_ship      | pulldown   | null: false                    |
+| price             | string     | null: false                    |
+| user              | references | foreign_key: true              |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to user
+- has_many :comments
+- has_one :purchaser
 
-* Deployment instructions
 
-* ...
+## comments テーブル
+
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| text      | text       | null: false                    |
+| user      | references | foreign_key: true              |
+| item      | references | foreign_key: true              |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+
+## purchasers テーブル
+
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| credit_card_infomation | string     | null: false                    |
+| expiration_date        | string     | null: false                    |
+| security_code          | string     | null: false                    |
+| postal_code            | string     | null: false                    |
+| prefectures            | pulldown   | null: false                    |
+| municipality           | string     | null: false                    |
+| address                | string     | null: false                    |
+| building name          | string     |                                |
+| phone_number           | string     | null: false                    |
+| user                   | references | foreign_key: true              |
+| item                   | references | foreign_key: true              |
+
+### Association
+
+- belongs_to user
+- belongs_to item
+
