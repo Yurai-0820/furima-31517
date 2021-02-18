@@ -20,27 +20,27 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def update
-    if @item.update(item_params)
-      redirect_to item_path(@item)
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @item.update(item_params)
+  #     redirect_to item_path(@item)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def destroy
-    if @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
-  end
+  # def destroy
+  #   if @item.destroy
+  #     redirect_to root_path
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
 
   private
 

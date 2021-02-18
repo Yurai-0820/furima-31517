@@ -16,11 +16,13 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :category_id, numericality: { other_than: 1 } 
-    validates :condition_id, numericality: { other_than: 1 } 
-    validates :shipping_charge_id, numericality: { other_than: 1 } 
-    validates :prefecture_id, numericality: { other_than: 0 } 
-    validates :days_to_ship_id, numericality: { other_than: 1 } 
-    validates :price, format: { with: /\A[0-9]+\z/, message: "is invalid. input harf-width characters."}, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"} 
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :condition_id 
+      validates :shipping_charge_id
+      validates :days_to_ship_id
+    end
+      validates :prefecture_id, numericality: { other_than: 0 } 
+      validates :price, format: { with: /\A[0-9]+\z/, message: "is invalid. input harf-width characters."}, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"} 
   end
 end
