@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to root_path
     else
-      redirect_to item_path(item.id)
+      redirect_to item_path(@item.id)
     end
   end
 
