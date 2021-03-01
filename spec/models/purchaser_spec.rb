@@ -2,11 +2,19 @@ require 'rails_helper'
 
 RSpec.describe OrderCash, type: :model do
   before do
-    @order = FactoryBot.build(:order_cash)
+    sleep 0.02
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order_cash, user_id: @user.id , item_id: @item.id)
   end
   describe '注文情報の保存' do
     context '注文情報の保存ができるとき' do
-      it 'postal_code とprefecture_id、municipalityと address 、phone_number、 token、item_id、user_id が存在すれば登録できる' do
+      it 'postal_code とprefecture_id、municipalityと address、building_name, phone_number、token、item_id、user_id が存在すれば登録できる' do
+        expect(@order).to be_valid
+      end
+
+      it 'building_nameが無くても登録できる' do
+           @order.building_name = ''
         expect(@order).to be_valid
       end
     end
