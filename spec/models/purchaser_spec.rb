@@ -23,7 +23,7 @@ RSpec.describe OrderCash, type: :model do
       it '郵便番号が空であるときは保存できない' do
         @order.postal_code = ''
         @order.valid?
-        expect(@order.errors.full_messages).to include("Postal code can't be blank", 'Postal code code Input correctly')
+        expect(@order.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号にハイフンがないときは保存できない' do
         @order.postal_code = '1234567'
